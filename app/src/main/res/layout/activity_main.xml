@@ -11,6 +11,17 @@
 		<variable
 			name="viewmodel"
 			type="com.whz.myjetpack.MainViewModel"/>
+		<variable
+			name="test"
+			type="com.whz.myjetpack.entity.TestData"/>
+
+		<variable
+			name="person"
+			type="com.whz.myjetpack.entity.TestPerson"/>
+
+		<variable
+			name="mData"
+			type="com.whz.myjetpack.entity.TestLiveData"/>
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +59,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="商品标题"
+				android:text='@{test.title}'
 				android:textColor="#0f0"
 				android:textSize="24dp"
 				app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +86,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="14dp"
-				android:text="1200"
+				android:text="@{String.valueOf(mData.hData)}"
 				app:layout_constraintStart_toEndOf="@+id/textView2"
 				android:layout_marginStart="48dp"
 				android:id="@+id/textView5"
@@ -133,7 +144,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="24dp"
-				android:text="商品测试2"
+				android:text="@{person.country}"
 				android:layout_marginEnd="8dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@+id/cl_iv_image"
@@ -164,14 +175,14 @@
 				android:layout_marginBottom="8dp"
 				app:layout_constraintBottom_toBottomOf="parent"/>
 		</androidx.constraintlayout.widget.ConstraintLayout>
-
+		<!--@={双向绑定}-->
 		<EditText
 			android:layout_width="match_parent"
 			android:layout_height="35dp"
 			android:hint="请输入数量"
 			android:background="@null"
 			android:layout_marginBottom="28dp"
-			android:text="@{viewmodel.number}"
+			android:text="@={viewmodel.number}"
 			app:layout_constraintBottom_toTopOf="@+id/textView6"
 			tools:layout_editor_absoluteX="0dp"/>
 
@@ -194,5 +205,17 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"/>
+
+		<Button
+			android:text="事件绑定"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/button2"
+			android:layout_marginBottom="8dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:layout_marginEnd="8dp"
+			app:layout_constraintStart_toEndOf="@+id/button"
+			android:layout_marginStart="8dp"/>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
