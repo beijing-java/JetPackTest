@@ -10,7 +10,7 @@
 
 		<variable
 			name="viewmodel"
-			type="com.whz.myjetpack.MainViewModel"/>
+			type="com.whz.myjetpack.vm.MainViewModel"/>
 		<variable
 			name="test"
 			type="com.whz.myjetpack.entity.TestData"/>
@@ -22,12 +22,16 @@
 		<variable
 			name="mData"
 			type="com.whz.myjetpack.entity.TestLiveData"/>
+
+		<variable
+			name="handler"
+			type="com.whz.myjetpack.view.MainActivity.TestHandler"/>
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:context=".MainActivity">
+		tools:context=".view.MainActivity">
 
 		<View
 			android:layout_width="match_parent"
@@ -216,6 +220,7 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginEnd="8dp"
 			app:layout_constraintStart_toEndOf="@+id/button"
+			android:onClick='@{()->handler.nClickListener("事件绑定成功")}'
 			android:layout_marginStart="8dp"/>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
