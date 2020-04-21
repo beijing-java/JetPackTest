@@ -1,5 +1,6 @@
 package com.whz.myjetpack.view
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.widget.TextView
@@ -75,15 +76,18 @@ class MainActivity : AppCompatActivity() {
             testPerson.country = "河北石家庄"
             mLiveData.setmData(124545)
         }
-        //TODO 事件绑定
-        binding.handler=TestHandler()
+        binding.button2.setOnClickListener {
+            intentEvent()
+        }
 
     }
 
-    inner class TestHandler {
-        fun nClickListener(obj:String) {
-            Toast.makeText(this@MainActivity, obj, Toast.LENGTH_SHORT).show()
-        }
+    public fun intentEvent() {
+        val intent = Intent()
+        intent.setClass(this, EventActivity::class.java)
+        intent.putExtra("data", "intent传递的数据")
+        startActivity(intent)
+//        finish()
     }
 
 }

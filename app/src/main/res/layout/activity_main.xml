@@ -11,6 +11,7 @@
 		<variable
 			name="viewmodel"
 			type="com.whz.myjetpack.vm.MainViewModel"/>
+
 		<variable
 			name="test"
 			type="com.whz.myjetpack.entity.TestData"/>
@@ -22,10 +23,6 @@
 		<variable
 			name="mData"
 			type="com.whz.myjetpack.entity.TestLiveData"/>
-
-		<variable
-			name="handler"
-			type="com.whz.myjetpack.view.MainActivity.TestHandler"/>
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -185,14 +182,18 @@
 			android:layout_height="35dp"
 			android:hint="请输入数量"
 			android:background="@null"
-			android:layout_marginBottom="28dp"
+			android:layout_marginBottom="40dp"
 			android:text="@={viewmodel.number}"
 			app:layout_constraintBottom_toTopOf="@+id/textView6"
-			tools:layout_editor_absoluteX="0dp"/>
+			app:layout_constraintEnd_toEndOf="parent"
+			android:layout_marginEnd="8dp"
+			app:layout_constraintStart_toStartOf="parent"
+			android:layout_marginStart="8dp"
+			app:layout_constraintHorizontal_bias="0.0"/>
 
 		<TextView
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="40dp"
 			android:text="@{String.valueOf(viewmodel.total)}"
 			android:textSize="20dp"
 			android:background="#0f8"
@@ -208,19 +209,18 @@
 			android:id="@+id/button"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintBottom_toBottomOf="parent"/>
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintHorizontal_bias="0.26"/>
 
 		<Button
 			android:text="事件绑定"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/button2"
-			android:layout_marginBottom="8dp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginEnd="8dp"
 			app:layout_constraintStart_toEndOf="@+id/button"
-			android:onClick='@{()->handler.nClickListener("事件绑定成功")}'
 			android:layout_marginStart="8dp"/>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

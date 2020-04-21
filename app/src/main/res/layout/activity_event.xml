@@ -2,9 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
+
 		<variable
 			name="viewmodel"
 			type="com.whz.myjetpack.vm.EventViewModel"/>
+
+		<variable
+			name="handler"
+			type="com.whz.myjetpack.view.EventActivity.TestHandler"/>
 	</data>
 
 	<LinearLayout
@@ -13,8 +18,61 @@
 		android:layout_height="match_parent">
 
 		<Button
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:onClick="@{handler.onClickListener1}"
 			android:text="测试1"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:onClick="@{()->handler.onClickListener2()}"
+			android:layout_marginTop="10dp"
+			android:text="测试2"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:layout_marginTop="10dp"
+			android:onClick="@{handler::onClickListener3}"
+			android:text="测试3"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:layout_marginTop="10dp"
+			android:onClick="@{()->handler.onClickListener4(12)}"
+			android:text="测试4"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:layout_marginTop="10dp"
+			android:onClick="@{handler.obClickListener}"
+			android:text="测试5"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#07c160"
+			android:background="@drawable/button_frame"
+			android:textSize="16dp"
+			android:layout_marginTop="10dp"
+			android:text="测试6"/>
 	</LinearLayout>
 </layout>

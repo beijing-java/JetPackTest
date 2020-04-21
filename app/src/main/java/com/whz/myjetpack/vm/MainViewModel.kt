@@ -27,5 +27,4 @@ class MainViewModel : ViewModel() {
         }
         total.value = number.toString().toInt() * numTotal
     }
-
 }
