@@ -15,4 +15,5 @@ class EventViewModel(app: Application) : AndroidViewModel(app) {
     fun onClick1() {
         Toast.makeText(applications, "王怀智1", Toast.LENGTH_SHORT).show()
     }
+
 }
