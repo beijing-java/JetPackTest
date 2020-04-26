@@ -7,7 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.whz.livepermissions.LivePermissions
+import com.whz.livepermissions.PermissionResult
 import com.whz.myjetpack.R
 import com.whz.myjetpack.databinding.ActivityMainBinding
 import com.whz.myjetpack.entity.TestData
@@ -79,7 +82,24 @@ class MainActivity : AppCompatActivity() {
         binding.button2.setOnClickListener {
             intentEvent()
         }
-
+        val permissions = LivePermissions(this)
+        permissions.request(android.Manifest.permission.CAMERA).observe(this, Observer {
+            when (it) {
+                is PermissionResult.Grant -> Toast.makeText(this, "权限允许", Toast.LENGTH_SHORT).show()
+                is PermissionResult.Rationale -> {
+                    Toast.makeText(this, "权限拒绝", Toast.LENGTH_SHORT).show()
+                    it.permissions.forEach {
+                        println("被拒绝的权限$it")
+                    }
+                }
+                is PermissionResult.Deny -> {
+                    Toast.makeText(this, "权限拒绝，且不再询问", Toast.LENGTH_SHORT).show()
+                    it.permissions.forEach {
+                        println("被拒绝的权限$it")
+                    }
+                }
+            }
+        })
     }
 
     public fun intentEvent() {

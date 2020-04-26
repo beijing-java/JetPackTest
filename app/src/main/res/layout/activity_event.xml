@@ -67,12 +67,18 @@
 			android:text="测试5"/>
 
 		<Button
+			android:id="@+id/button6"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:textColor="#07c160"
 			android:background="@drawable/button_frame"
 			android:textSize="16dp"
 			android:layout_marginTop="10dp"
-			android:text="测试6"/>
+			android:text="@{viewmodel.nameTest}"/>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/imageView"
+			/>
 	</LinearLayout>
 </layout>

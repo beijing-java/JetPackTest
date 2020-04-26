@@ -1,5 +1,7 @@
 package com.whz.myjetpack.kotlin
 
+import android.view.View
+
 /**
  * Created by 王鹏程 on 2020/4/21.
  * 类(NestAndInner)解释:
@@ -27,5 +29,13 @@ class NestAndInner {
         //可以访问静态/非静态变量，函数
         fun getName(): String = testName
     }
+    //匿名内部类
+    fun textObject(view:View){
+        view.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                // 这里的object : Interface接口，为匿名内部类
+            }
 
+        })
+    }
 }
