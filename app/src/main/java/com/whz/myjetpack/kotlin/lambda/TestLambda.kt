@@ -4,6 +4,7 @@ import kotlin.reflect.KFunction
 
 /**
  * Created by 王鹏程 on 2020/4/26.
+ * https://www.jianshu.com/p/498792258d91
  * 类(TestLambda)解释:
  * kotlin中的Lambda表达式学习
  * 穿插有inline(内联函数)
