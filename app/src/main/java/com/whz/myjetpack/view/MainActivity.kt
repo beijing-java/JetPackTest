@@ -100,6 +100,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        binding.button3.setOnClickListener{
+            startActivity(Intent(this,MaterialActivity::class.java))
+        }
     }
 
     public fun intentEvent() {

@@ -1,21 +1,39 @@
 package com.whz.myjetpack.kotlin.coroutines
 
 import kotlinx.coroutines.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Created by 王鹏程 on 2020/4/27.
  * 类(TestCoroutines)解释:
  * GlobalScope.launch  launch  runBlocking coroutineScope 创建一个新的协程作用域
+ * async:async必须在协程作用域中定义 配合await返回结果
+ * withContext()是async跟await的封装
  */
 class TestCoroutines {
-    var obj:Job = Job()
-    //创建协程
-    fun createCoroutins(){
-        obj=GlobalScope.launch {
+    var obj: Job = Job()
 
+    fun createCoroutine() {
+        // 使用CoroutineScope创建，CoroutineScope为函数
+        val scope = CoroutineScope(obj)
+        obj = scope.launch {
+            // launch 无返回值，只是运行一段程序,所以返回值取值
+            val result = async {
+                5 + 5
+            }.await()
+            println(result)
+        }
+
+    }
+
+    fun createCoroutins() {
+        // 创建顶层协程作用域，为什么不建议使用顶层，因为每次cancel，只能取消一个，多个协程，挨个取消
+        obj = GlobalScope.launch {
         }
     }
-    fun cancelCoroutins(){
+
+    fun cancelCoroutins() {
         obj.cancel()// 取消协程--activity销毁时，将协程取消
     }
 }
@@ -72,11 +90,45 @@ fun main() {
     单独抽离函数，在launch中进行调用，
     suspend
      */
-    runBlocking {
-        suFun("赵四")
-        suFun("王五")
-        suFun("孙六")
-    }
+//    runBlocking {
+//        suFun("赵四")
+//        suFun("王五")
+//        suFun("孙六")
+//    }
+
+//    val mCoroutine = TestCoroutines()
+//    println(mCoroutine.createCoroutine())
+
+//    runBlocking {
+//        val result = async {
+//            delay(1000)
+//            5 + 5
+//        }
+////        println(result)
+//                println(result.await())
+//
+//        val result2 = async {
+//            delay(1000)
+//            10 + 10
+//        }
+//        /*
+//         一种方式是串行方式---会阻塞当前协程 async直接调用await
+//         一种方式是并行方式---快速，省时     async先执行，最后调用await
+//         */
+////        println(result2)
+//        println(result2.await())
+//    }
+
+//    runBlocking {
+//        // Dispatchers 调度员
+//        val result = withContext(Dispatchers.Default) {
+//            delay(1000)
+//            "王怀智学习kotlin的协程"
+//        }
+//        println(result)
+//    }
+
+   println(request(""))
 }
 
 /*
@@ -96,4 +148,15 @@ suspend fun suFun(name: String) = coroutineScope {
 
 fun comFun() {
     println("common function 执行")
+}
+
+fun request(str: String): String {
+    var s: String = ""
+    runBlocking {
+        delay(1000)
+        s = suspendCoroutine<String> { continuation ->
+            continuation.resume("正确")
+        }
+    }
+    return s
 }
