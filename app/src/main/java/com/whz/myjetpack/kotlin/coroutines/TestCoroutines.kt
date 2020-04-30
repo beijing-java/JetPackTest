@@ -90,7 +90,7 @@ fun main() {
     单独抽离函数，在launch中进行调用，
     suspend
      */
-//    runBlocking {
+    runBlocking {
 //        suFun("赵四")
 //        suFun("王五")
 //        suFun("孙六")
@@ -107,10 +107,10 @@ fun main() {
 ////        println(result)
 //                println(result.await())
 //
-//        val result2 = async {
-//            delay(1000)
-//            10 + 10
-//        }
+        val result2 = async {
+            delay(1000)
+            10 + 10
+        }
 //        /*
 //         一种方式是串行方式---会阻塞当前协程 async直接调用await
 //         一种方式是并行方式---快速，省时     async先执行，最后调用await
@@ -126,9 +126,15 @@ fun main() {
 //            "王怀智学习kotlin的协程"
 //        }
 //        println(result)
-//    }
-
-   println(request(""))
+    }
+    runBlocking {
+        launch {
+            tSync()
+        }
+        async {
+            tSync()
+        }
+    }
 }
 
 /*
@@ -160,3 +166,20 @@ fun request(str: String): String {
     }
     return s
 }
+
+suspend fun fetchDocs(){
+    val reslut= tSync()
+
+}
+suspend fun tSync(){
+    withContext(Dispatchers.IO){
+        println("我是子线程")
+    }
+}
+/*
+CoroutineScope是用来定义协程，并不运行协程，追踪/取消协程
+启动新协程两种方式：
+launch 不会将结果返回
+async 允许您使用一个await的挂起函数返回结果
+
+ */
