@@ -14,4 +14,12 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+    @Test
+    fun main(){
+        val str="""
+            快乐健康了就上打开荆防颗粒
+            接口路的数据库反垄断
+            """
+        println("王怀智${str}")
+    }
 }
