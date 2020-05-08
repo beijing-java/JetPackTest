@@ -1,7 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--如果使用Chip，ChipGroups，ChipDrawable新控件，需要改变主题为MaterialComponents以及它的子主题-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--ActionBar背景色-->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -12,4 +14,7 @@
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@android:color/holo_blue_light</item>
     </style>
 
+    <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@android:color/black</item>
+    </style>
 </resources>
