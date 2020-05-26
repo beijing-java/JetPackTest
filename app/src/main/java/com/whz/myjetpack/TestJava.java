@@ -1,12 +1,13 @@
 package com.whz.myjetpack;
 
-import com.whz.myjetpack.entity.TestToData;
-import com.whz.myjetpack.kotlin.spreadfun.*;
+import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
+import androidx.annotation.NonNull;
+import com.whz.myjetpack.kotlin.spreadfun.StringKt;
+import com.whz.myjetpack.utils.LogUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -15,6 +16,13 @@ import java.util.Map;
  * {@link TestKotlinKt}
  */
 public class TestJava {
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 
     public static void main(String[] args) {
         //java 的{{}} 调用对象内部方法进行初始化操作
@@ -36,8 +44,37 @@ public class TestJava {
         String str = "王怀智";
         System.out.println(StringKt.lastChar(str));//扩展函数
         StringKt.setLastChar1(str, 'a');//扩展属性
+        String result = String.format( "my name is %s","占位符");// 底层调用new Formatter().format
+        String result1=new Formatter().format( "my name is %s","占位符").toString();
+        System.out.println(result);
+    }
+
+    public void a() {
+        b();
+        f();
+    }
+
+    public void b() {
+        c();
+        e();
+    }
+
+    public void f() {
 
     }
+
+    public void c() {
+
+    }
+
+    public void e() {
+
+    }
+
+    public void d() {
+
+    }
+
 }
 
 

@@ -2,6 +2,8 @@ package com.whz.myjetpack.view
 
 import android.opengl.Visibility
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -73,5 +75,11 @@ class NeScrollActivity : AppCompatActivity() {
 
         })
 
+        val message=Message.obtain()
+    }
+    private var handler: Handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+        }
     }
 }

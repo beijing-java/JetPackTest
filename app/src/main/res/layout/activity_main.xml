@@ -49,22 +49,28 @@
             <ImageView
                     android:layout_width="@dimen/sp120"
                     android:layout_height="@dimen/sp120"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/destination"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/guideline2"
                     android:layout_marginLeft="@dimen/sp35"
                     android:id="@+id/imageView"
                     android:layout_marginTop="8dp"
+                    android:background="@color/Red"
                     app:layout_constraintTop_toTopOf="@+id/guideline"/>
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:lines="1"
                     android:text='@{test.title}'
                     android:textColor="#0f0"
-                    android:textSize="24dp"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="16dp"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="11dp"
+                    android:autoSizeMaxTextSize="24dp"
+                    android:autoSizeStepGranularity="1sp"
                     app:layout_constraintTop_toTopOf="@+id/guideline"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     android:id="@+id/textView3"/>
@@ -206,16 +212,17 @@
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MaterialDesign"
+                android:text="Material"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
 
         <Button
-                android:text="计算"
+                android:text="计算调试"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/button3"/>
 
@@ -225,9 +232,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toEndOf="@+id/button"
                 android:layout_marginStart="8dp"/>
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转新控件"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

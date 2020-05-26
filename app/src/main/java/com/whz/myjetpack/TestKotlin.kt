@@ -8,6 +8,7 @@ import com.whz.myjetpack.kotlin.spreadfun.lastChar1
  * Created by 王鹏程 on 2020/5/6.
  * 类(TestKotlin)解释:
  *  [TestJava]来进行java与kotlin之间的调用
+ *  [com.whz.myjetpack.view.MainActivity.onCreate]
  */
 class TestKotlin {
     //lateinit 不支持基本元素（Int,Boolean,Char...）,修饰var的变量

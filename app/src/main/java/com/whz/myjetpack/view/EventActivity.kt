@@ -13,6 +13,13 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.BaseRequestOptions
+import com.bumptech.glide.request.RequestOptions
+import com.lzy.okgo.callback.StringCallback
+import com.lzy.okgo.model.Response
+import com.whz.myjetpack.HttpUtils
 import com.whz.myjetpack.R
 import com.whz.myjetpack.databinding.ActivityEventBinding
 import com.whz.myjetpack.lifecycle.MyLifecycleObserver
@@ -33,6 +40,7 @@ class EventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //Lifecycle  生命周期-getLifecycle()添加观察者
         lifecycle.addObserver(MyLifecycleObserver())
+        lifecycle.addObserver(HttpUtils())
         dataBind = DataBindingUtil.setContentView(this, R.layout.activity_event)
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(
             EventViewModel::class.java
@@ -65,11 +73,35 @@ class EventActivity : AppCompatActivity() {
         dataBind.viewmodel = viewModel
         dataBind.lifecycleOwner = this
         viewModel.nameTest.value = "就看见"
-        thread {
-            val bitmap =
-                BitmapUtils.parseUrl("https://tpc.googlesyndication.com/simgad/1003817915554331183/downsize_200k_v1")
-            runOnUiThread { dataBind.imageView.setImageBitmap(bitmap) }
-        }
+        // 1.第一种方式加载图片
+//        thread {
+//            val bitmap =
+//                BitmapUtils.parseUrl("https://tpc.googlesyndication.com/simgad/1003817915554331183/downsize_200k_v1")
+//            runOnUiThread { dataBind.imageView.setImageBitmap(bitmap) }
+//        }
+        // 2.使用Glide加载图片
+        Glide.with(this)
+            .load("https://tpc.googlesyndication.com/simgad/1003817915554331183/downsize_200k_v1")
+            .placeholder(R.mipmap.ic_launcher)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .into(dataBind.imageView)
+        testOkGo()
+    }
+
+    /**
+     * OkGo的调试
+     */
+    private fun testOkGo() {
+        val httpUtils=HttpUtils()
+        httpUtils.get("https://wanandroid.com/wxarticle/chapters/json",tags = "王怀智",callback = object :StringCallback() {
+            override fun onSuccess(response: Response<String>?) {
+            }
+        })
+        httpUtils.get("https://wanandroid.com/wxarticle/chapters/json",tags = false,callback = object :StringCallback() {
+            override fun onSuccess(response: Response<String>?) {
+            }
+        })
     }
 
     /**

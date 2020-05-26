@@ -16,7 +16,7 @@ data class Person(val name: String, val age: Int) {
     }
 
     //成员函数
-    fun memberFun(a:Int,b:Int) {
+    fun memberFun(a: Int, b: Int) {
         println("她的名字叫$name,芳龄是$age")
     }
 }
@@ -45,12 +45,27 @@ fun namFunction(a1: Int = 10, operation: String, a2: Int = 12): Int {
 
 fun converRep(conver: (String) -> Unit) {}
 
-inline fun meetInline(s: String, noinline conver: (String) -> Unit) {
+inline fun meetInline(s: String,  conver: (String) -> Unit) {
     /*
     Illegal usage of inline-parameter 'conver' in 'public inline fun meetInline(s: String, conver: () -> Unit): Unit defined in com.whz.myjetpack.kotlin.lambda in file TestLambda.kt'. Add 'noinline' modifier to the parameter declaration
      不可以把加inline的参数，传递给非inline的函数调用，如果需要调用，请加上"noinline"
      */
-    converRep(conver)
+//    converRep(conver)
+    conver(s)
+    println("我执行了")
+}
+
+fun inlineTest() {
+    converRep {
+        // 因为lambda表达式结束了，但是调用lambda表达式的函数，并没有就此结束
+        // 所以只是返回到表达式，并不允许直接return
+        return@converRep
+    }
+    meetInline("王怀智"){
+        return@meetInline
+    }
+    println("我执行了111")
+
 }
 
 fun main() {
@@ -88,18 +103,19 @@ fun main() {
     //-------------3 ***成员引用   调用函数中的成员方法/变量   Person::成员
     /*这里调用函数时，不需要加(),当lambda有多个参数时，可以直接使用调用成员，简单快捷*/
     val getMember = Person::memberFun
-    getMember(Person("小刚",15),12,12)
+    getMember(Person("小刚", 15), 12, 12)
     //等价于
-    val getMember1 = { p: Person -> p.memberFun(12,12) }
-    getMember1(Person("小红",18))
-
-
+    val getMember1 = { p: Person -> p.memberFun(12, 12) }
+    getMember1(Person("小红", 18))
+    inlineTest()
 
 }
+
 //----------编写lambda表达式为参数，以及它的调用方式
-fun toLambda(i:Int,b:(Int)->Unit){
+fun toLambda(i: Int, b: (Int) -> Unit) {
     println(b(i))
 }
-fun fromLambda(i:Int)= println("Salute")
+
+fun fromLambda(i: Int) = println("Salute")
 //    ::定义的函数，参数值，以及数量必须要跟调用的函数中的lambda的参数对应
 //    toLambda(1,::fromLambda)
